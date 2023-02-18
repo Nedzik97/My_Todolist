@@ -1,36 +1,46 @@
 import './App.css';
 import React, {useState} from 'react';
-import { CreateTaskForm } from './componets/crate-task-form.jsx';
-import { TaskList } from './componets/task-list.jsx';
+import { CreateTaskForm } from './componets/create-task-form.jsx';
+import { UpdateForm } from './componets/update-form.jsx';
+import { ToDo } from './componets/todo.jsx';
+import { SorttingButtons } from './componets/task-filters';
 
+export const filters = {
+	all: 'all',
+	completed: 'completed',
+	active: 'active',
+}
 
 function App() {
-	const [task, setTask] = useState('');
-	const [tasks, setTasks] = useState([]);
+	const [toDos, setToDo] = useState([]);
+	const [newTask, setNewTask] = useState('');
+	const [updateData, setUpdateData] = useState('');
+	const [filterValue, setFilterValue] = useState(filters.all);
 
-	const addTask = (task) => {
-		if (task !== '') {
-			setTasks((tasks) => [...tasks, task]);
-			setTask('');
+	const filtredTodos = toDos.filter((todo) => {
+		if(filterValue === filters.all) {
+			return true;
 		}
-	};
-
-	const deleteTask = (text) => {
-		const newTasks = tasks.filter((task) => {
-			return task !== text;
+		if(filterValue === filters.active){
+			return todo.status === false;
+		}
+		return todo.status === true;
 		});
-		setTasks(newTasks);
- 	};
+
 
   return (
     <div className="App">
-			<h1>To Do List</h1>
-			<CreateTaskForm task={task} setTask={setTask} addTask={addTask} />
-			<TaskList tasks={tasks} deleteTask={deleteTask}/>
+			<h1 className='page-title'>To Do list</h1>
+    	{updateData && updateData ? (
+      	<UpdateForm toDos={toDos} setToDo={setToDo} updateData={updateData} setUpdateData={setUpdateData}/>
+    	) : (
+      	<CreateTaskForm toDos={toDos} setToDo={setToDo} newTask={newTask} setNewTask={setNewTask} />
+    	)}
+			{filtredTodos.length !== 0 && <SorttingButtons setFilterValue={setFilterValue} filterValue={filterValue}/>}
+    	{filtredTodos?.length ? '' : 'Not found task'}
+			<ToDo toDos={toDos} setToDo={setToDo} setUpdateData={setUpdateData} filtredTodos={filtredTodos}/>
     </div>
   );
-};
+}
 
 export default App;
-
-

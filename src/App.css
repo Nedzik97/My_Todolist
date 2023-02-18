@@ -1,117 +1,181 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
 body {
-  padding: 50px;
-  color: #ffffff;
-  min-height: 100vh;
-  background: #ffffff;
-  font-family: "Roboto", sans-serif;
+  background-color: #333;
+  color: #fff;
 }
 
 .App {
-  padding: 1rem;
-  max-width: 100%;
-  margin: 0 auto;
   text-align: center;
-  background: #333;
 }
 
-h1 {
-  font-weight: 300;
-  color: #ffffff;
-  font-size: 2.5rem;
-  letter-spacing: 0.2rem;
-  text-transform: uppercase;
+.page-title {
+	margin: 10px 0 30px 0;
+	text-transform: uppercase;
+	color: #00ff89;
+	font-size: 40px;
 }
 
-.form-create-task {
-  margin: 3.5rem;
+.input-wrapper {
+	display: flex;
+	justify-content: center;
 }
 
-.todos-wrapper {
-  margin-bottom: 2.5rem;
+.input-add-task {
+	width: 700px;
+	height: 40px;
+	background-color: transparent;
+	border: 1px solid #fff;
+	color: #fff;
+	font-size: 20px;
 }
 
-.task {
+.button-create-task {
+	width: 120px;
+	font-size: 17px;
+	font-weight: 600;
+	background-color: transparent;
+	color: #fff;
+	border: 1px solid #fff;
+	cursor: pointer;
+}
+
+.task-wrapper {
+	display: flex;
+	margin: 0 auto;
+	width: 70%;
+  background-color: #555;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  padding: 10px 140px 10px 15px;
+  text-align: left;
+  font-size: 22px;
+  position: relative;
+}
+
+.task-wrapper div {
   display: flex;
+  align-items: center;
+}
+
+.taskNumber {
+  color: #fff;
+	border: 1px solid #C0C0C0;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  text-align: center;
+  font-size: 14px;
+  margin-right: 8px;
+  align-items: center;
   justify-content: center;
-  align-items: flex-start;
+	background-color: #555;
+	font-weight: 600;
 }
 
-input {
-  width: 450px;
-  padding: 0.8em;
+.taskBg .taskText {
+  flex: 1;
 }
 
-input:focus {
-  outline: none;
+.taskBg .done .taskText {
+  text-decoration: line-through;
+  opacity: 0.3;
 }
 
-button {
-  width: 120px;
-  padding: 0.8em;
-  cursor: pointer;
-  font-weight: 400;
-  letter-spacing: 0.1rem;
+.button-wraper {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 15px;
+  width: auto;
+  display: inline-block;
 }
 
-input,
-button {
-  font-size: 1em;
-  appearance: none;
-  color: currentcolor;
-  background: transparent;
-  border: 2px solid #828691;
+.done {
+	text-decoration: line-through;
+	opacity: 0.3;
 }
+
+.edit-input {
+	width: 700px;
+	height: 40px;
+	background-color: transparent;
+	border: 1px solid #fff;
+	color: #fff;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+.button-update-task {
+	width: 100px;
+	height: 30px;
+	background-color: transparent;
+	color: #0162c8;
+	cursor: pointer;
+	border: none;
+	font-size: 15px;
+	text-transform: uppercase;
+	font-weight: 600;
+}
+
+.button-undo-edit {
+	width: 100px;
+	height: 30px;
+	background-color: transparent;
+	color: red;
+	cursor: pointer;
+	border: none;font-size: 15px;
+	text-transform: uppercase;
+	font-weight: 600;
+}
+
 
 .button-complete-task {
-
+	color: #32CD32;
 }
 
-.button-redact-task {
-
+.button-edit-task {
+	color: #FFD700;
 }
 
-.button-add-task {
-  color: #008080	;
-  border-left: none;
+.button-delete-task {
+	color: #DC143C;
 }
 
-.delete-button {
-  color: #fe6a6a;
+.filter-button {
+	position: relative;
+	display: inline-block;
+	padding: 12px 36px;
+	background-color: transparent;
+	border: none;
+	font-size: 15px;
+	font-weight: 600;
+	color: #fff;
+	letter-spacing: 2px;
+	margin-bottom: 10px;
+	cursor: pointer;
+	font-weight: 600;
 }
 
-ul {
-  padding: 0;
-  list-style: none;
-  margin-bottom: 0px;
-}
+.button {
+	position: relative;
+	display: inline-block;
+	padding: 6px 16px;
+	margin: 0 6px;
+	border-radius: 40px;
+	text-transform: uppercase;
+	text-decoration: none;
+	
+	font-size: 14px;
+	cursor: pointer;
+	border: none;
+	background: linear-gradient(90deg, #0162c8, #55e7fc);
+	color: #fff;
+}	
 
-li {
-  width: 450px;
-  padding: 0.85em;
-  text-align: left;
-  margin-bottom: 0.5rem;
-  background: #494847;
-  letter-spacing: 0.02rem;
-  transition: all 0.3s ease-out;
-  border-bottom: 3px solid #cf972e;
-}
+.button-selected {
+	border-bottom: 2px solid #00ff89;
+};
 
-li:last-child {
-  margin-bottom: 0px;
-}
-
-.empty {
-  font-size: 20px;
-  font-weight: 400;
-  color: #fe6a6a;
-  letter-spacing: 0.2rem;
-}
 
 
 
