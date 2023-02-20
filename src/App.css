@@ -29,12 +29,14 @@ body {
 }
 
 .button-create-task {
+	margin-left: 20px;
 	width: 120px;
 	font-size: 17px;
 	font-weight: 600;
-	background-color: transparent;
+	letter-spacing: 2px;
 	color: #fff;
-	border: 1px solid #fff;
+	border: none;
+	background: linear-gradient(120deg, #00ff89,#1e00ff);
 	cursor: pointer;
 }
 
@@ -96,7 +98,7 @@ body {
 }
 
 .edit-input {
-	width: 700px;
+	width: 800px;
 	height: 40px;
 	background-color: transparent;
 	border: 1px solid #fff;
@@ -130,15 +132,15 @@ body {
 
 
 .button-complete-task {
-	color: #32CD32;
+	background: linear-gradient(90deg, #80ff00c3, #4a7222 );
 }
 
 .button-edit-task {
-	color: #FFD700;
+	background: linear-gradient(90deg, #FFD700, #865d12 );
 }
 
 .button-delete-task {
-	color: #DC143C;
+	background: linear-gradient(90deg, #f00c3a, #822134 );
 }
 
 .filter-button {
@@ -164,11 +166,10 @@ body {
 	border-radius: 40px;
 	text-transform: uppercase;
 	text-decoration: none;
-	
-	font-size: 14px;
+	font-size: 12px;
+	font-weight: 600;
 	cursor: pointer;
 	border: none;
-	background: linear-gradient(90deg, #0162c8, #55e7fc);
 	color: #fff;
 }	
 

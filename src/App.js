@@ -2,8 +2,8 @@ import './App.css'
 import React, { useState } from 'react'
 import { CreateTaskForm } from './componets/create-task-form.jsx'
 import { UpdateForm } from './componets/update-form.jsx'
-import { ToDo } from './componets/todo.jsx'
-import { SorttingButtons } from './componets/task-filters'
+import { CreateTask } from './componets/create-task.jsx'
+import { FilterButtons } from './componets/task-filters'
 
 export const filters = {
   all: 'all',
@@ -12,51 +12,51 @@ export const filters = {
 }
 
 function App() {
-  const [toDos, setToDo] = useState([])
-  const [newTask, setNewTask] = useState('')
-  const [updateData, setUpdateData] = useState('')
+  const [tasksList, setTasksList] = useState([])
+  const [task, setTask] = useState(null)
+  const [editTask, setEditTask] = useState(null)
   const [filterValue, setFilterValue] = useState(filters.all)
 
-  const filtredTodos = toDos.filter((todo) => {
+  const filteredTasks = tasksList.filter((task) => {
     if (filterValue === filters.all) {
       return true
     }
     if (filterValue === filters.active) {
-      return todo.status === false
+      return task.isComplete === false
     }
-    return todo.status === true
+    return task.isComplete === true
   })
 
   return (
     <div className="App">
       <h1 className="page-title">To Do list</h1>
-      {updateData && updateData ? (
+      {editTask && editTask ? (
         <UpdateForm
-          toDos={toDos}
-          setToDo={setToDo}
-          updateData={updateData}
-          setUpdateData={setUpdateData}
+          tasksList={tasksList}
+          setTasksList={setTasksList}
+          editTask={editTask}
+          setEditTask={setEditTask}
         />
       ) : (
         <CreateTaskForm
-          toDos={toDos}
-          setToDo={setToDo}
-          newTask={newTask}
-          setNewTask={setNewTask}
+          tasksList={tasksList}
+          setTasksList={setTasksList}
+          task={task}
+          setTask={setTask}
         />
       )}
-      {filtredTodos.length !== 0 && (
-        <SorttingButtons
+      {tasksList.length !== 0 && (
+        <FilterButtons
           setFilterValue={setFilterValue}
           filterValue={filterValue}
         />
       )}
-      {filtredTodos?.length ? '' : 'Not found task'}
-      <ToDo
-        toDos={toDos}
-        setToDo={setToDo}
-        setUpdateData={setUpdateData}
-        filtredTodos={filtredTodos}
+      {tasksList?.length ? '' : 'Not found task'}
+      <CreateTask
+        tasksList={tasksList}
+        setTasksList={setTasksList}
+        setEditTask={setEditTask}
+        filteredTasks={filteredTasks}
       />
     </div>
   )

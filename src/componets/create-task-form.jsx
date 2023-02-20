@@ -1,12 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-export const CreateTaskForm = ({ newTask, setNewTask, toDos, setToDo }) => {
+export const CreateTaskForm = ({ task, setTask, tasksList, setTasksList }) => {
   const addTask = (event) => {
     event.preventDefault()
-    if (newTask) {
-      let newEntry = { id: new Date(), title: newTask, status: false }
-      setToDo([...toDos, newEntry])
-      setNewTask('')
+    if (task) {
+      let newEntry = { id: new Date(), title: task, isComplete: false }
+      setTasksList([...tasksList, newEntry])
+      setTask('')
     }
   }
 
@@ -15,8 +16,8 @@ export const CreateTaskForm = ({ newTask, setNewTask, toDos, setToDo }) => {
       <div className="row">
         <form className="input-wrapper" onSubmit={addTask}>
           <input
-            value={newTask}
-            onChange={(e) => setNewTask(e.target.value)}
+            value={task}
+            onChange={(e) => setTask(e.target.value)}
             className="input-add-task"
           />
           <button className="button-create-task">Add Task</button>
@@ -25,4 +26,17 @@ export const CreateTaskForm = ({ newTask, setNewTask, toDos, setToDo }) => {
       <br />
     </>
   )
+}
+
+CreateTaskForm.propTypes = {
+  task: PropTypes.string.isRequired,
+  setTask: PropTypes.func,
+  setTasksList: PropTypes.func,
+  tasksList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      isComplete: PropTypes.bool.isRequired,
+    })
+  ),
 }

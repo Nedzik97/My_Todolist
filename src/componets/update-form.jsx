@@ -1,31 +1,37 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-export const UpdateForm = ({ updateData, setUpdateData, toDos, setToDo }) => {
+export const UpdateForm = ({
+  editTask,
+  setEditTask,
+  tasksList,
+  setTasksList,
+}) => {
   const cancelUpdate = () => {
-    setUpdateData('')
+    setEditTask('')
   }
 
   const changeTask = (event) => {
     let newEntry = {
-      id: updateData.id,
+      id: editTask.id,
       title: event.target.value,
-      status: updateData.status ? true : false,
+      isComplete: editTask.isComplete,
     }
-    setUpdateData(newEntry)
+    setEditTask(newEntry)
   }
 
   const updateTask = () => {
-    let filterRecords = [...toDos].filter((task) => task.id !== updateData.id)
-    let updatedObject = [...filterRecords, updateData]
-    setToDo(updatedObject)
-    setUpdateData('')
+    let filterRecords = tasksList.filter((task) => task.id !== editTask.id)
+    let updateTask = [...filterRecords, editTask]
+    setTasksList(updateTask)
+    setEditTask('')
   }
 
   return (
     <>
       <div className="edit-input-wrapper">
         <input
-          value={updateData && updateData.title}
+          value={updateTask && updateTask.title}
           onChange={(event) => changeTask(event)}
           className="edit-input"
         />
@@ -41,4 +47,17 @@ export const UpdateForm = ({ updateData, setUpdateData, toDos, setToDo }) => {
       <br />
     </>
   )
+}
+
+UpdateForm.propTypes = {
+  editTask: PropTypes.string.isRequired,
+  setEditTask: PropTypes.func.isRequired,
+  setTasksList: PropTypes.func.isRequired,
+  tasksList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      isComplete: PropTypes.bool.isRequired,
+    })
+  ),
 }

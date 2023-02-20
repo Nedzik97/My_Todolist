@@ -1,7 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { filters } from '../App.js'
 
-export const SorttingButtons = ({ filterValue, setFilterValue }) => {
+export const FilterButtons = ({ filterValue, setFilterValue }) => {
   return (
     <div className="sort-button-wrapper">
       <button
@@ -30,4 +31,9 @@ export const SorttingButtons = ({ filterValue, setFilterValue }) => {
       </button>
     </div>
   )
+}
+
+FilterButtons.propTypes = {
+  filterValue: PropTypes.string.isRequired,
+  setFilterValue: PropTypes.string.isRequired,
 }

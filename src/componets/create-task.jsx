@@ -1,45 +1,51 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-export const ToDo = ({ toDos, setToDo, setUpdateData, filtredTodos }) => {
-  const markDone = (id) => {
-    let newTask = toDos.map((task) => {
+export const CreateTask = ({
+  tasksList,
+  setTasksList,
+  setEditTask,
+  filteredTasks,
+}) => {
+  const completeTask = (id) => {
+    let newTask = tasksList.map((task) => {
       if (task.id === id) {
-        return { ...task, status: !task.status }
+        return { ...task, isComplete: !task.isComplete }
       }
       return task
     })
-    setToDo(newTask)
+    setTasksList(newTask)
   }
 
   const deleteTask = (id) => {
-    let newTasks = toDos.filter((task) => task.id !== id)
-    setToDo(newTasks)
+    let newTasks = tasksList.filter((task) => task.id !== id)
+    setTasksList(newTasks)
   }
 
   return (
     <>
-      {filtredTodos.map((task, index) => {
+      {filteredTasks.map((task, index) => {
         return (
           <div className="task-wrapper" key={task.id}>
-            <div className={task.status ? 'done' : ''}>
+            <div className={task.isComplete ? 'done' : ''}>
               <span className="taskNumber">{index + 1}</span>
               <span className="taskText">{task.title}</span>
             </div>
             <div className="button-wraper">
               <button
                 className="button button-complete-task"
-                onClick={(e) => markDone(task.id)}
+                onClick={() => completeTask(task.id)}
               >
-                {task.status ? 'Uncomplete' : 'Complete'}
+                {task.isComplete ? 'Uncomplete' : 'Complete'}
               </button>
-              {task.status ? null : (
+              {task.isComplete ? null : (
                 <button
                   className="button button-edit-task"
                   onClick={() =>
-                    setUpdateData({
+                    setEditTask({
                       id: task.id,
                       title: task.title,
-                      status: task.status ? true : false,
+                      isComplete: task.isComplete,
                     })
                   }
                 >
@@ -58,4 +64,17 @@ export const ToDo = ({ toDos, setToDo, setUpdateData, filtredTodos }) => {
       })}
     </>
   )
+}
+
+CreateTask.propTypes = {
+  setTasksList: PropTypes.func.isRequired,
+  setEditTask: PropTypes.func.isRequired,
+  filteredTasks: PropTypes.array.isRequired,
+  tasksList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      isComplete: PropTypes.bool.isRequired,
+    })
+  ),
 }
