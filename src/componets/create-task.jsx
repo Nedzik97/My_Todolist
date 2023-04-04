@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 export const CreateTask = ({
   tasksList,
@@ -24,44 +25,48 @@ export const CreateTask = ({
 
   return (
     <>
-      {filteredTasks.map((task, index) => {
-        return (
-          <div className="task-wrapper" key={task.id}>
-            <div className={task.isComplete ? 'done' : ''}>
-              <span className="taskNumber">{index + 1}</span>
-              <span className="taskText">{task.title}</span>
-            </div>
-            <div className="button-wraper">
-              <button
-                className="button button-complete-task"
-                onClick={() => completeTask(task.id)}
-              >
-                {task.isComplete ? 'Uncomplete' : 'Complete'}
-              </button>
-              {task.isComplete ? null : (
-                <button
-                  className="button button-edit-task"
-                  onClick={() =>
-                    setEditTask({
-                      id: task.id,
-                      title: task.title,
-                      isComplete: task.isComplete,
-                    })
-                  }
-                >
-                  Edit
-                </button>
-              )}
-              <button
-                className="button button-delete-task"
-                onClick={() => deleteTask(task.id)}
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        )
-      })}
+      <TransitionGroup>
+        {filteredTasks.map((task, index) => {
+          return (
+            <CSSTransition key={task.id} timeout={500} classNames="task">
+              <div className="task-wrapper" key={task.id}>
+                <div className={task.isComplete ? 'done' : ''}>
+                  <span className="taskNumber">{index + 1}</span>
+                  <span className="taskText">{task.title}</span>
+                </div>
+                <div className="button-wraper">
+                  <button
+                    className="button button-complete-task"
+                    onClick={() => completeTask(task.id)}
+                  >
+                    {task.isComplete ? 'Uncomplete' : 'Complete'}
+                  </button>
+                  {task.isComplete ? null : (
+                    <button
+                      className="button button-edit-task"
+                      onClick={() =>
+                        setEditTask({
+                          id: task.id,
+                          title: task.title,
+                          isComplete: task.isComplete,
+                        })
+                      }
+                    >
+                      Edit
+                    </button>
+                  )}
+                  <button
+                    className="button button-delete-task"
+                    onClick={() => deleteTask(task.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </CSSTransition>
+          )
+        })}
+      </TransitionGroup>
     </>
   )
 }
