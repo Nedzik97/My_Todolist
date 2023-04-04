@@ -28,7 +28,7 @@ export const CreateTask = ({
       <TransitionGroup>
         {filteredTasks.map((task, index) => {
           return (
-            <CSSTransition key={task.id} timeout={500} classNames="task">
+            <CSSTransition key={task.id} timeout={800} classNames="task">
               <div className="task-wrapper" key={task.id}>
                 <div className={task.isComplete ? 'done' : ''}>
                   <span className="taskNumber">{index + 1}</span>

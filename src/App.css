@@ -178,19 +178,19 @@ body {
 };
 
 .task-exit-active {
-	animation: fade-out 500ms forwards
+	animation: fade-out 800ms forwards
 }
 
 .task-exit {
-	animation: fade-out 500ms forwards;
+	animation: fade-out 800ms forwards;
 }
 
 .task-enter {
-	animation: fade-in 500ms forwards;
+	animation: fade-in 800ms forwards;
 }
 
 .task-enter-active {
-	animation: fade-in 500ms forwards;
+	animation: fade-in 800ms forwards;
 }
 
 @keyframes fade-in {
