@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styles from './update-form.module.scss'
 
 export const UpdateForm = ({
   editTask,
@@ -29,18 +30,18 @@ export const UpdateForm = ({
 
   return (
     <>
-      <div className="edit-input-wrapper">
+      <div className={styles.editInputWrapper}>
         <input
           value={updateTask && updateTask.title}
           onChange={(event) => changeTask(event)}
-          className="edit-input"
+          className={styles.editInput}
         />
       </div>
-      <div className="edit-button-wrapper">
-        <button onClick={updateTask} className="button-update-task">
+      <div className={styles.editButtonWrapper}>
+        <button onClick={updateTask} className={styles.buttonUpdateTask}>
           Update
         </button>
-        <button onClick={cancelUpdate} className="button-undo-edit">
+        <button onClick={cancelUpdate} className={styles.buttonUndoEdit}>
           Cancel
         </button>
       </div>

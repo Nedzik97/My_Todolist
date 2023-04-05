@@ -1,9 +1,9 @@
-import './App.css'
 import React, { useState } from 'react'
-import { CreateTaskForm } from './componets/create-task-form.jsx'
-import { UpdateForm } from './componets/update-form.jsx'
-import { CreateTask } from './componets/create-task.jsx'
-import { FilterButtons } from './componets/task-filters'
+import { UpdateForm } from '../update-form/update-form.jsx'
+import { TaskList } from '../task-list/task-list.jsx'
+import { FilterButtons } from '../task-filter/task-filters.jsx'
+import { CreateTaskForm } from '../create-task-form/create-task-form.jsx'
+import styles from './App.module.scss'
 
 export const filters = {
   all: 'all',
@@ -28,8 +28,8 @@ function App() {
   })
 
   return (
-    <div className="App">
-      <h1 className="page-title">To Do list</h1>
+    <div className={styles.App}>
+      <h1 className={styles.pageTitle}>To Do list</h1>
       {editTask && editTask ? (
         <UpdateForm
           tasksList={tasksList}
@@ -52,7 +52,7 @@ function App() {
         />
       )}
       {tasksList?.length ? '' : 'Not found task'}
-      <CreateTask
+      <TaskList
         tasksList={tasksList}
         setTasksList={setTasksList}
         setEditTask={setEditTask}

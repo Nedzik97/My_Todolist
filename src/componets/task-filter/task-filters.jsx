@@ -1,29 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { filters } from '../App.js'
+import { filters } from '../app/App.jsx'
+import styles from './task-filter.module.scss'
 
 export const FilterButtons = ({ filterValue, setFilterValue }) => {
   return (
-    <div className="sort-button-wrapper">
+    <div className={styles.sortButtonWrapper}>
       <button
-        className={`filter-button ${
-          filterValue === filters.all ? 'button-selected' : ''
+        className={`${styles.filterButton} ${
+          filterValue === filters.all ? styles.buttonSelected : ''
         }`}
         onClick={() => setFilterValue(filters.all)}
       >
         All tasks
       </button>
       <button
-        className={`filter-button ${
-          filterValue === filters.completed ? 'button-selected' : ''
+        className={`${styles.filterButton} ${
+          filterValue === filters.completed ? styles.buttonSelected : ''
         }`}
         onClick={() => setFilterValue(filters.completed)}
       >
         Completed
       </button>
       <button
-        className={`filter-button ${
-          filterValue === filters.active ? 'button-selected' : ''
+        className={`${styles.filterButton} ${
+          filterValue === filters.active ? styles.buttonSelected : ''
         }`}
         onClick={() => setFilterValue(filters.active)}
       >

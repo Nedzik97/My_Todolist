@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styles from './create-task-form.module.scss'
 
 export const CreateTaskForm = ({ task, setTask, tasksList, setTasksList }) => {
   const addTask = (event) => {
@@ -13,14 +14,14 @@ export const CreateTaskForm = ({ task, setTask, tasksList, setTasksList }) => {
 
   return (
     <>
-      <div className="row">
-        <form className="input-wrapper" onSubmit={addTask}>
+      <div className={styles.row}>
+        <form className={styles.inputWrapper} onSubmit={addTask}>
           <input
             value={task}
             onChange={(e) => setTask(e.target.value)}
-            className="input-add-task"
+            className={styles.inputAddTask}
           />
-          <button className="button-create-task">Add Task</button>
+          <button className={styles.buttonCreateTask}>Add Task</button>
         </form>
       </div>
       <br />

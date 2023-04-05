@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import cx from 'classnames'
+import styles from './task-list.module.scss'
 
-export const CreateTask = ({
+export const TaskList = ({
   tasksList,
   setTasksList,
   setEditTask,
@@ -28,22 +30,31 @@ export const CreateTask = ({
       <TransitionGroup>
         {filteredTasks.map((task, index) => {
           return (
-            <CSSTransition key={task.id} timeout={800} classNames="task">
-              <div className="task-wrapper" key={task.id}>
-                <div className={task.isComplete ? 'done' : ''}>
-                  <span className="taskNumber">{index + 1}</span>
-                  <span className="taskText">{task.title}</span>
+            <CSSTransition
+              key={task.id}
+              timeout={800}
+              classNames={{
+                enter: styles.taskEnter,
+                enterActive: styles.taskEnterActive,
+                exit: styles.taskExit,
+                exitActive: styles.taskExitActive,
+              }}
+            >
+              <div className={styles.taskWrapper} key={task.id}>
+                <div className={task.isComplete ? styles.done : ''}>
+                  <span className={styles.taskNumber}>{index + 1}</span>
+                  <span className={styles.taskText}>{task.title}</span>
                 </div>
-                <div className="button-wraper">
+                <div className={styles.buttonWraper}>
                   <button
-                    className="button button-complete-task"
+                    className={cx(styles.button, styles.buttonCompleteTask)}
                     onClick={() => completeTask(task.id)}
                   >
                     {task.isComplete ? 'Uncomplete' : 'Complete'}
                   </button>
                   {task.isComplete ? null : (
                     <button
-                      className="button button-edit-task"
+                      className={cx(styles.button, styles.buttonEditTask)}
                       onClick={() =>
                         setEditTask({
                           id: task.id,
@@ -56,7 +67,7 @@ export const CreateTask = ({
                     </button>
                   )}
                   <button
-                    className="button button-delete-task"
+                    className={cx(styles.button, styles.buttonDeleteTask)}
                     onClick={() => deleteTask(task.id)}
                   >
                     Delete
@@ -71,7 +82,7 @@ export const CreateTask = ({
   )
 }
 
-CreateTask.propTypes = {
+TaskList.propTypes = {
   setTasksList: PropTypes.func.isRequired,
   setEditTask: PropTypes.func.isRequired,
   filteredTasks: PropTypes.array.isRequired,
